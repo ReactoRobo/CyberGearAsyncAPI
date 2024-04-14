@@ -4,6 +4,8 @@ Python Async API For Xiaomi CyberGear Micro Motor
 
 Inspired by other sync python lib for CyberGear, the async api allows users to control motor in async framework, enabling real-time control and swift response.
 
+#### *Note that: The repo is not fully constructed, and some codes could be optimized and some bugs should be fixed.* 
+
 #### The main features are:
 
 - Efficient: Support Async Framework
@@ -139,7 +141,7 @@ Don't worry, the CyberGear Async API is easy to install
             await asyncio.sleep(0.002) # Meet your control frequency
 
             angle, speed, torque = cyberGear.Motor_Status # Retrieve motor current status (angle, speed and torque)
-            
+
             # You can set other interrupt method
             except KeyboardInterrupt: 
                 await cyberGear.async_disable()
