@@ -1,3 +1,9 @@
+"""
+I will arise and go now, and go to Innisfree,
+
+And a small cabin build there, of clay and wattles made
+"""
+
 import struct
 import logging
 import enum
@@ -65,7 +71,7 @@ class CANMotorAsyncController:
         self.ERROR_FLAG = ''
         self.TORQUE_CONSTANT = self.T_MAX / self.I_MAX
         self.Motor_Status = [0]*3
-        self.IQF = 0
+        self.IndexValue = 0
         self.FEEDBACK_STRUCT = BitStruct(
             "com_mode" / BitsInteger(5),
             "motor_mode" / BitsInteger(2),
@@ -223,7 +229,7 @@ class CANMotorAsyncController:
                     if data_parser.com_mode == 2:
                         self.Motor_Status = list(self.motor_status_parser(data[7:15]))
                     elif data_parser.com_mode == 17:
-                        self.IQF = self.format_data(data=data[11:15], format='f', type="decode")[0]
+                        self.IndexValue = self.format_data(data=data[11:15], format='f', type="decode")[0]
         except asyncio.CancelledError:
             raise
         except Exception as e:
